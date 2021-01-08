@@ -1,7 +1,9 @@
 package Reservation;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Reservation {
@@ -57,8 +59,10 @@ public class Reservation {
             Thread.sleep(1000);
 
             //Click Destination
-           driver.findElement(By.xpath("//input[@class='select2-input']")).click();
-            Thread.sleep(1000);
+        WebElement element = driver.findElement(By.xpath("/html/body/div[4]/div/input"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
+        Thread.sleep(10000);
 
             //Click on check in datepicker
             driver.findElement(By.xpath("//*[@id=\"checkin\"]")).click();
