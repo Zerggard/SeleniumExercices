@@ -7,9 +7,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class NewUser {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         //Instance an object WebDriver
         WebDriver driver;
 
@@ -22,25 +23,30 @@ public class NewUser {
         //Indicate chromedriver.exe file localization in the property
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "\\drivers\\chromedriver.exe");
 
+
         //Launch a new Chrome browser.
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         //Open URL https://testpages.herokuapp.com/styled/index.html
         driver.get(baseURL);
 
         //Select the link that let us to add new user and click it
-        webElementName = driver.findElement(By.id("htmlformtest"));
-        webElementName.click();
+        driver.findElement(By.id("htmlformtest")).click();
+        Thread.sleep(1000);
 
         //Select textBox username and send it the information of user
         driver.findElement(By.name("username")).sendKeys("Zerggard");
+        Thread.sleep(1000);
 
         //Select textBox password and send it the pass
         driver.findElement(By.name("password")).sendKeys("12345");
+        Thread.sleep(1000);
 
         comments = driver.findElement(By.name("comments"));
         comments.clear();
         comments.sendKeys("This is a probe");
+        Thread.sleep(1000);
 
         List<WebElement> oCheckBox = driver.findElements(By.name("checkboxes[]"));
         // This will tell you the number of checkboxes are present
@@ -57,6 +63,7 @@ public class NewUser {
                 oCheckBox.get(i).click();
             }
         }
+        Thread.sleep(1000);
 
         List<WebElement> oRadioItems = driver.findElements(By.name("radioval"));
         // This will tell you the number of checkboxes are present
@@ -70,6 +77,7 @@ public class NewUser {
                 oRadioItems.get(i).click();
             }
         }
+        Thread.sleep(1000);
 
         List <WebElement> elementCount;
         int selectSize = 0;
@@ -84,6 +92,7 @@ public class NewUser {
                 oSelect.selectByValue("ms3");
             }
         }
+        Thread.sleep(1000);
 
         Select oDropDwon = new Select(driver.findElement(By.name("dropdown")));        elementCount = oDropDwon.getOptions();
         selectSize = elementCount.size();
@@ -93,6 +102,7 @@ public class NewUser {
                 oDropDwon.selectByValue("dd6");
             }
         }
+        Thread.sleep(1000);
 
         driver.findElement(By.name("submitbutton")).submit();
 
@@ -115,6 +125,7 @@ public class NewUser {
                 System.out.println("Test was right");
         }
 
+        Thread.sleep(10000);
         driver.quit();
     }
 }
