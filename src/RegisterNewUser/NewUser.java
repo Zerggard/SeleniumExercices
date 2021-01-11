@@ -48,6 +48,7 @@ public class NewUser {
         comments.sendKeys("This is a probe");
         Thread.sleep(1000);
 
+        // Select check box
         List<WebElement> oCheckBox = driver.findElements(By.name("checkboxes[]"));
         // This will tell you the number of checkboxes are present
         int iSize = oCheckBox.size();
@@ -65,6 +66,7 @@ public class NewUser {
         }
         Thread.sleep(1000);
 
+        // Select radio option
         List<WebElement> oRadioItems = driver.findElements(By.name("radioval"));
         // This will tell you the number of checkboxes are present
         int radioSize = oRadioItems.size();
@@ -79,6 +81,7 @@ public class NewUser {
         }
         Thread.sleep(1000);
 
+        // Select multiple option
         List <WebElement> elementCount;
         int selectSize = 0;
         Select oSelect = new Select(driver.findElement(By.name("multipleselect[]")));
@@ -94,6 +97,7 @@ public class NewUser {
         }
         Thread.sleep(1000);
 
+        // Select drow down option
         Select oDropDwon = new Select(driver.findElement(By.name("dropdown")));        elementCount = oDropDwon.getOptions();
         selectSize = elementCount.size();
         for(int i =0; i<selectSize ; i++){
@@ -104,10 +108,12 @@ public class NewUser {
         }
         Thread.sleep(1000);
 
+        //Click submit button
         driver.findElement(By.name("submitbutton")).submit();
 
         if(driver.getCurrentUrl().equalsIgnoreCase("https://testpages.herokuapp.com/styled/the_form_processor.php")){
 
+            //Taking all information that we have selected
             String userName = driver.findElement(By.xpath("//*[@id=\"_valueusername\"]")).getText();
             String password = driver.findElement(By.xpath("//*[@id=\"_valuepassword\"]")).getText();
             String commentsResults = driver.findElement(By.xpath("//*[@id=\"_valuecomments\"]")).getText();
@@ -115,6 +121,8 @@ public class NewUser {
             String radioOptions = driver.findElement(By.xpath("//*[@id=\"_valueradioval\"]")).getText();
             String multipleSelect = driver.findElement(By.xpath("//*[@id=\"_valuemultipleselect0\"]")).getText();
             String dropDwon = driver.findElement(By.xpath("//*[@id=\"_valuedropdown\"]")).getText();
+
+            //Comparing information acquired with expected
             if (userName.equalsIgnoreCase("Zerggard") &&
                     password.equalsIgnoreCase("12345") &&
                             commentsResults.equalsIgnoreCase("This is a probe") &&

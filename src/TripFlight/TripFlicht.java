@@ -67,7 +67,7 @@ public class TripFlicht {
         driver.findElement(By.xpath("//*[@id=\"flights\"]/div/div/form/div/div/div[3]/div[3]/div/div/div[1]/div/div[2]/div/span/button[1]")).click();
         Thread.sleep(1000);
 
-        //Click one more child
+        //Click on one more child
         driver.findElement(By.xpath("//*[@id=\"flights\"]/div/div/form/div/div/div[3]/div[3]/div/div/div[2]/div/div[2]/div/span/button[1]")).click();
         Thread.sleep(1000);
 
@@ -75,32 +75,41 @@ public class TripFlicht {
         driver.findElement(By.xpath("//*[@id=\"flights\"]/div/div/form/div/div/div[3]/div[4]/button")).click();
         Thread.sleep(5000);
 
+        //Click on BOOK NOW button of trip selected
         driver.findElement(By.xpath("//*[@id=\"LIST\"]/li[3]/div/div[1]/div[2]/form/div[2]/div/button")).click();
         Thread.sleep(1000);
 
+        //Send passenger name
         driver.findElement(By.xpath("//*[@id=\"passenger_name_0\"]")).sendKeys("Zerggard");
         Thread.sleep(1000);
 
+        //Send passenger age
         driver.findElement(By.xpath("//*[@id=\"passenger_age_0\"]")).sendKeys("32");
         Thread.sleep(1000);
 
+        //Send passenger passport id
         driver.findElement(By.xpath("//*[@id=\"passenger_passport_0\"]")).sendKeys("014797");
         Thread.sleep(1000);
 
+        //Click on CONFIRM THIS BOOKING button
         WebElement element = driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div/div/div[1]/div/div[1]/div[2]/div[4]/button"));
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", element);
         Thread.sleep(10000);
 
+        //CLick on pay arrival
         driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/div/div/div[2]/center/button[1]")).click();
         Thread.sleep(1000);
-
+        //Accept alert
         Alert alert = driver.switchTo().alert();
         alert.accept();
         Thread.sleep(3000);
 
+        //Verifying message received
         if(driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/div/div/div[2]/div[2]/h4")).getText().equalsIgnoreCase("Your booking status is Reserved"));
             System.out.println("Everything was OK");
+
+        //Closing webdriver
         driver.quit();
     }
 }

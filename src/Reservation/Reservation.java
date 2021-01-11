@@ -136,6 +136,8 @@ public class Reservation {
         String response = driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/div/div/div[2]/div[2]/h4")).getText();
         if(response.equalsIgnoreCase("Your booking status is Reserved"))
             System.out.println("Everything was OK");
+
+        //Closing webdriver
         driver.quit();
     }
 }
